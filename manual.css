@@ -8,6 +8,9 @@
 	z-index:1000000;
 	width:100%;
 	height:100%;
+	font-size: 12px;
+    font-family: arial;
+
 }
 .boxtext{
 	position:absolute;
@@ -19,8 +22,6 @@
 }
 .boxtext .inner{
 	padding:10px;
-	font-size: 12px;
-    font-family: arial;
 }
 .boxtext_left{
 	border-right:3px solid red !important;
@@ -133,16 +134,18 @@
 	right:5px;
 	display:table-cell;
 	text-align:center;
-	line-height: 32px;
+	line-height: 40px !important;
 	font-size: 24px;
 	font-weight: bolder;
 	color:white;
+    -moz-box-sizing: content-box !important;
 }
 
 .manual_exit:hover{
 	color:red;
 	border:solid 6px red;
 	cursor:pointer;
+	-moz-box-sizing: content-box !important;
 }
 .manual_overlay a{
 	color:white;
