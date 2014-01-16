@@ -139,6 +139,7 @@
 	font-weight: bolder;
 	color:white;
     -moz-box-sizing: content-box !important;
+    -webkit-box-sizing: content-box !important;
 }
 
 .manual_exit:hover{
@@ -146,6 +147,7 @@
 	border:solid 6px red;
 	cursor:pointer;
 	-moz-box-sizing: content-box !important;
+	-webkit-box-sizing: content-box !important;
 }
 .manual_overlay a{
 	color:white;
