@@ -322,3 +322,4 @@ window.options = [
 
 ```
 
+MIT License
