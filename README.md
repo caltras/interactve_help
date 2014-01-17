@@ -229,7 +229,7 @@ window.options = [
               top:"50px",
               left:"550px",
               nextStep:true,
-              prevStep:true
+              prevStep:'"step1"'
             }
           ]
       },
@@ -314,7 +314,7 @@ window.options = [
               type:"text",
               text:"Finished!!!",
               size:"24px",
-              prevStep:0
+              prevStep:'"step1"'
             }
           ]
       }
