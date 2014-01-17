@@ -9,8 +9,8 @@ Create a text in the screen
 3. **top**: absolute position top 
 4. **left**: absolute position left
 5. **size**: font size (css style)
-6. **nextStep**: next option to change view
-7. **prevStep**: back option to change view
+6. **nextStep**: boolean | number | string (step id), next option to change view
+7. **prevStep**: boolean | number | string (step id), back option to change view
 8. **box**: boolean, put border and fill
 9. **maxSizeBox**: max box width 
 
@@ -22,8 +22,8 @@ Creates a text box on the screen associated with the object
 3. **selector**: string (jQuery Selector)  **_(required)_**
 4. **maxSizeBox**: max box width
 5. **position**: "left" | "top" | "right" | "bottom"
-6. **nextStep**: next option to change view
-7. **prevStep**: back option to change view
+6. **nextStep**: boolean | number | string (step id),next option to change view
+7. **prevStep**: boolean | number | string (step id),back option to change view
 
 ##[waitText]
 Creates a text "Please wait" on the screen, usually used to show that the next step will be automatic
@@ -55,5 +55,139 @@ Creates a region associated with an element on the screen
 2. **selector**: string (jQuery Selector)  **_(required)_**
 3. **clickable**: boolean
 4. **fn**: function or string function
+
+
+##Example
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="../manual.css" rel="stylesheet">
+  </head>
+  <body>
+  
+      <input type="text" id="name"/>
+      <button id="btnOk">OK</button>
+      
+      <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+      <script src="simple.js"></script>
+      <script src="../jquery.waitelement.js"></script>
+      <script src="../manual.js"></script>
+  </body>
+</html>
+```
+###Configuration Example
+Matrix
+```javascript
+window.options = [
+      [
+        {
+          type:"text",
+          text:"Welcome to the Example",
+          size:"24px",
+          nextStep:true
+        }
+      ],
+      [
+        {
+          type:"object",
+          selector:"#name",
+          info: "name Input text ",
+          position:"top",
+          maxSizeBox:"150px",
+        },
+        {
+          type:"object",
+          selector:"#btnOk",
+          info: "Ok Button",
+          position:"bottom",
+          maxSizeBox:"150px",
+        },
+        {
+          type:"text",
+          text:"Animation",
+          box:true,
+          maxSizeBox:"100px",
+          top:"50px",
+          left:"550px",
+          nextStep:true,
+          prevStep:true
+        }
+      ],
+      [
+        {
+          type:"waitText",
+        },
+       {
+        type:"function",
+        fn: function(){
+          window.manual.nextStep()
+        },
+        time:"5000"
+       }
+      ],
+      [
+        {
+          type:"object",
+          selector:"#name",
+          info: "name Input text ",
+          position:"bottom",
+          maxSizeBox:"150px",
+        },
+        {
+          type:"object",
+          selector:"#btnOk",
+          info: "Ok Button",
+          position:"top",
+          maxSizeBox:"150px",
+        },
+        {
+          type:"waitText",
+        },
+       {
+        type:"function",
+        fn: function(){
+          window.manual.nextStep()
+        },
+        time:"3000"
+       }
+      ],
+      [
+        {
+          type:"object",
+          selector:"#name",
+          info: "name Input text ",
+          position:"left",
+          maxSizeBox:"150px",
+        },
+        {
+          type:"object",
+          selector:"#btnOk",
+          info: "Ok Button",
+          position:"right",
+          maxSizeBox:"150px",
+        },
+        {
+          type:"waitText",
+        },
+       {
+        type:"function",
+        fn: function(){
+          window.manual.nextStep();
+        },
+        time:"3000"
+       }
+      ],
+      [
+        {
+          type:"text",
+          text:"Finished!!!",
+          size:"24px",
+          prevStep:0
+        }
+      ]
+]
+
+```
 
 
