@@ -1,7 +1,6 @@
 # Interactive Help
 ===============
 #[Configuration]
-------
 ##[text]
 Create a text in the screen
 
