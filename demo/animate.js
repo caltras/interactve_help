@@ -1,0 +1,127 @@
+window.options = [
+      {
+        id:"step1",
+        items:[
+                {
+                  type:"text",
+                  text:"Welcome to the Example",
+                  size:"24px",
+                  nextStep:true
+                }
+              ]
+      },
+      {
+        id:"step2",
+        items:[
+            {
+              type:"object",
+              selector:"#name",
+              info: "name Input text ",
+              position:"top",
+              maxSizeBox:"150px",
+            },
+            {
+              type:"object",
+              selector:"#btnOk",
+              info: "Ok Button",
+              position:"bottom",
+              maxSizeBox:"150px",
+            },
+            {
+              type:"text",
+              text:"Animation",
+              box:true,
+              maxSizeBox:"100px",
+              top:"50px",
+              left:"550px",
+              nextStep:true,
+              prevStep:'"step1"'
+            }
+          ]
+      },
+      {
+        id:"step3",
+        items:[
+                {
+                  type:"waitText",
+                },
+               {
+                type:"function",
+                fn: function(){
+                  window.manual.nextStep()
+                },
+                time:"5000"
+               }
+              ]
+      },
+      {
+        id:"step4",
+        items:
+            [
+              {
+                type:"object",
+                selector:"#name",
+                info: "name Input text ",
+                position:"bottom",
+                maxSizeBox:"150px",
+              },
+              {
+                type:"object",
+                selector:"#btnOk",
+                info: "Ok Button",
+                position:"top",
+                maxSizeBox:"150px",
+              },
+              {
+                type:"waitText",
+              },
+             {
+              type:"function",
+              fn: function(){
+                window.manual.nextStep()
+              },
+              time:"3000"
+             }
+            ]
+      },
+      {
+        id:"step5",
+        items:[
+              {
+                type:"object",
+                selector:"#name",
+                info: "name Input text ",
+                position:"left",
+                maxSizeBox:"150px",
+              },
+              {
+                type:"object",
+                selector:"#btnOk",
+                info: "Ok Button",
+                position:"right",
+                maxSizeBox:"150px",
+              },
+              {
+                type:"waitText",
+              },
+             {
+              type:"function",
+              fn: function(){
+                window.manual.nextStep();
+              },
+              time:"3000"
+             }
+          ]
+      },
+      {
+        id:"step6",
+        items:[
+            {
+              type:"text",
+              text:"Finished!!!",
+              size:"24px",
+              prevStep:'"step1"'
+            }
+          ]
+      }
+]
