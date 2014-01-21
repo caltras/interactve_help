@@ -1,5 +1,6 @@
 # Interactive Help
 ===============
+Open Menu: Ctrl+M
 #[Configuration]
 ##[text]
 Create a text in the screen
