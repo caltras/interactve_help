@@ -307,7 +307,17 @@ var Manual = function(){
 	self.waitElement = function(id,fn,fnFail,time){
 		$(id).waitElement(fn,fnFail,time);
 	}
+	self.changeTheme = function(theme){
+		$("link[data-role='theme-manual']").remove();
+		if(Manual.DEFAULT_THEME!==theme){
+			$("head").append("<link rel='stylesheet' href='"+self.baseUrl+"/js/manual/manual_"+theme+".css' data-role='theme-manual'>")
+		}
+	}
 }
+Manual.LIGHT_THEME = 'light';
+Manual.DEFAULT_THEME = 'default';
+
 window.manual = new Manual();
+window.manual.baseUrl = window.baseUrl;
 window.manual.init();
 window.manual.options = window.options;
