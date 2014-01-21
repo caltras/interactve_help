@@ -1,0 +1,75 @@
+.manual_overlay{
+	background-color: rgba(255,255,255,0.5);
+}
+.boxtext{
+	color: white;
+	border:solid 1px rgb(61, 105, 134);
+	background-color:rgba(49, 146, 211, 0.8);
+}
+.boxtext.inner{
+	padding:10px;
+}
+.boxtext_left{
+	border-right:3px solid rgb(61, 105, 134) !important;
+}
+.boxtext_right{
+	border-left:3px solid rgb(61, 105, 134) !important;
+}
+.boxtext_bottom{
+	border-top:3px solid rgb(61, 105, 134) !important;
+}
+.boxtext_top{
+	border-bottom:3px solid rgb(61, 105, 134) !important;
+}
+.text{
+	color:black;
+}
+.arrow-small-up{
+	background-image: url(../../images/arrow-up_light.png);
+}
+.arrow-small-down{
+	background-image: url(../../images/arrow-down_light.png);
+}
+.arrow-small-right{
+	background-image: url(../../images/arrow-right_light.png);
+}
+.arrow-small-left{
+	background-image: url(../../images/arrow-left_light.png);
+}
+.arrow-up {
+	background-image: url(../../images/arrow-up_light.png);
+}
+
+.arrow-down {
+	background-image: url(../../images/arrow-down_light.png);
+}
+
+.arrow-right {
+	background-image: url(../../images/arrow-right_light.png);
+}
+
+.arrow-left {
+	background-image: url(../../images/arrow-left_light.png); 
+}
+.manual_exit{
+	border:solid 5px rgb(61, 105, 134);
+	color: rgb(61, 105, 134);
+}
+
+.manual_exit:hover{
+	color: black;
+	border:solid 6px black;
+}
+.manual_overlay a{
+	color: white;
+}
+.region{
+	background-color: rgba(63, 63, 63, 0.3);
+	border: solid 2px rgb(187, 187, 187);
+}
+.region:hover{
+	background-color: rgba(63, 63, 63, 0.5);
+}
+.wait{
+	color: rgb(61, 105, 134);
+}
