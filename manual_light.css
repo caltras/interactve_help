@@ -24,32 +24,35 @@
 .text{
 	color:black;
 }
+.text a{
+    color:black !important;
+}
 .arrow-small-up{
-	background-image: url(../../images/arrow-up_light.png);
+	background-image: url(images/arrow-up_light.png);
 }
 .arrow-small-down{
-	background-image: url(../../images/arrow-down_light.png);
+	background-image: url(images/arrow-down_light.png);
 }
 .arrow-small-right{
-	background-image: url(../../images/arrow-right_light.png);
+	background-image: url(images/arrow-right_light.png);
 }
 .arrow-small-left{
-	background-image: url(../../images/arrow-left_light.png);
+	background-image: url(images/arrow-left_light.png);
 }
 .arrow-up {
-	background-image: url(../../images/arrow-up_light.png);
+	background-image: url(images/arrow-up_light.png);
 }
 
 .arrow-down {
-	background-image: url(../../images/arrow-down_light.png);
+	background-image: url(images/arrow-down_light.png);
 }
 
 .arrow-right {
-	background-image: url(../../images/arrow-right_light.png);
+	background-image: url(images/arrow-right_light.png);
 }
 
 .arrow-left {
-	background-image: url(../../images/arrow-left_light.png); 
+	background-image: url(images/arrow-left_light.png); 
 }
 .manual_exit{
 	border:solid 5px rgb(61, 105, 134);
