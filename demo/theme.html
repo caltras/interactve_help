@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Theme Example Manual</title>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+        <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+        <link href="http://cdn.jsdelivr.net/codemirror/3.14.0/codemirror.css" rel="stylesheet">
+        <link href="../manual.css" rel="stylesheet">
+        <link href="../manual_light.css" rel="stylesheet">
+        <style>
+            body{
+                overflow-x:hidden;
+            }
+        </style>
+     </head>
+    <body>
+        <div class="row">
+            <div class="col-xs-12 col-md-8" style='height:200px;'>
+                use: <br/>
+                <code>
+                    &lt;link href="../manual.css" rel="stylesheet"&gt;
+                    <br/>
+                    &lt;link href="../manual_light.css" rel="stylesheet"&gt;
+                </code>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-6 col-sm-4">
+            </div>
+            <div class="col-xs-6 col-sm-4">
+                <div style="height:300px">
+                    <div class="dropdown">
+                      <button class="btn dropdown-toggle sr-only" type="button" id="dropdownMenu1" data-toggle="dropdown">
+                        Dropdown
+                        <span class="caret"></span>
+                      </button>
+                      <ul class="dropdown-menu" role="menu" style="display:block;" aria-labelledby="dropdownMenu1">
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+                        <li role="presentation" class="divider"></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+                      </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-6 col-sm-4">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-1 col-sm-1">
+            </div>
+            <div class="col-xs-10 col-sm-10">
+                <div><b>Configuration:</b></div>
+                <textarea id='sourcecode'></textarea>
+            </div>
+            <div class="col-xs-1 col-sm-1">
+            </div>
+        </div>
+        <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+        <script src="http://cdn.jsdelivr.net/codemirror/3.14.0/codemirror.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/codemirror/2.36.0/formatting.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/codemirror/2.36.0/javascript.js"></script>       
+        <script src="simple.js"></script>
+        <script src="../jquery.waitelement.js"></script>
+        <script src="../manual.js"></script>
+        <script>
+            $(document).ready(function(){
+                $("#sourcecode").val(JSON.stringify(window.options));
+                var editor = CodeMirror.fromTextArea(document.getElementById("sourcecode"),{
+                    lineNumbers:true,
+                    matchBrackets: true,
+                    mode: "application/json"
+                });
+                CodeMirror.commands["selectAll"](editor);
+                function getSelectedRange() {
+                    return { from: editor.getCursor(true), to: editor.getCursor(false) };
+                }
+              
+                function autoFormatSelection() {
+                    var range = getSelectedRange();
+                    console.log(range);
+                    editor.autoFormatRange(range.from, range.to);
+                }
+                autoFormatSelection();
+            });
+        </script>
+    </body>
+</html>
