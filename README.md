@@ -1,6 +1,6 @@
 # Interactive Help
 ===============
-Open Manual: Ctrl+M
+Open Manual: **ctrl+m**
 #[Configuration]
 ##[text]
 Create a text in the screen
