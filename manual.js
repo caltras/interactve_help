@@ -10,6 +10,7 @@ var Manual = function(){
 	self.options = [];
 	self.loaded = false;
 	self.lastStep = 0;
+	self.baseUrl = window.location.origin || window.location.protocol+"//"+window.location.host;
 	self.init = function(){
 		self.createOverlay();
 		self.addEventListener();
@@ -20,10 +21,6 @@ var Manual = function(){
 				if(!$("#"+self.idElement).is(":visible")){
 					if(self.options){
 						self.show();
-						if(!self.loaded){
-							self.loadManual(self.getOptions(self.lastStep));
-							self.loaded = true;
-						}
 					}else{
 						console.log("Configuração de Manual não definida.");
 					}
@@ -72,6 +69,10 @@ var Manual = function(){
 	}
 	self.show = function(){
 		$("#"+self.idElement).css("display","block");
+		if(!self.loaded){
+			self.loadManual(self.getOptions(self.lastStep));
+			self.loaded = true;
+		}
 	}
 	self.hide = function(){
 		$("#"+self.idElement).css("display","none");
@@ -214,24 +215,38 @@ var Manual = function(){
 		$("#"+self.idElement).append($(div));
 	}
 	self.createRegion = function(o,id){
-		var div = $("<div id='region_"+id+"' class='region'></div>");
-		var offset = $(o.selector).offset();
-		if($(o.selector).width() >= $(o.selector).height()){
-			$(div).width($(o.selector).width()+5);
-		}else{
-			$(div).width($(o.selector).height()+5);
+		for(var i=0;i<$(o.selector).length;i++){
+			var elem = $(o.selector)[i]
+			var div = $("<div id='region_"+id+"' class='region'></div>");
+			var offset = $(elem).offset();
+			var offsetWidth = 10;
+			var offsetHeight = 10;
+			var offsetTop = 3;
+			var offsetLeft = 5;
+
+			if(o.fit){
+				offsetWidth = 0;
+				offsetHeight = 0;
+				offsetTop = 0;
+				offsetLeft = 0;
+			}
+			//if($(o.selector).width() >= $(o.selector).height()){
+				$(div).width($(elem).width()+offsetWidth);
+			//}else{
+			//	$(div).width($(o.selector).height()+5);
+			//}
+			$(div).height($(elem).height()+offsetHeight);
+			$(div).css("top",offset.top-offsetTop);
+			$(div).css("left",offset.left-offsetLeft);
+			if(o.clickable){
+				$(div).click(function(){
+					self.runScript(o.fn);
+				});
+			}else{
+				$(div).css("cursor","default");
+			}
+			$("#"+self.idElement).append($(div));
 		}
-		$(div).height($(o.selector).height()+5);
-		$(div).css("top",offset.top-5);
-		$(div).css("left",offset.left-5);
-		if(o.clickable){
-			$(div).click(function(){
-				self.runScript(o.fn);
-			});
-		}else{
-			$(div).css("cursor","default");
-		}
-		$("#"+self.idElement).append($(div));
 	}
 	self.createNavStep = function(o){
 		var str = "<div class='navStep'>"
@@ -239,21 +254,18 @@ var Manual = function(){
 			if((typeof o.prevStep) == "boolean"){
 				str +="<a href='javascript:void(0)' class='prevStep' onclick='window.manual.prevStep();'>Voltar</a>";
 			}else{
-				str +="<a href='javascript:void(0)' class='prevStep' onclick='window.manual.step("+o.prevStep+");'>Voltar</a>";
+				str +="<a href='javascript:void(0)' class='prevStep' onclick='window.manual.step(\""+o.prevStep+"\");'>Voltar</a>";
 			}
 		}
 		if(o.nextStep || (typeof o.nextStep) =="number"){
 			if((typeof o.nextStep) == "boolean"){
-				str +="<a href='javascript:void(0)' class='nextStep' onclick='window.manual.nextStep()'>Pr&oacute;ximo</a>";
+				str +="<a href='javascript:void(0)' class='nextStep' onclick='window.manual.nextStep()'>Próximo</a>";
 			}else{
-				str +="<a href='javascript:void(0)' class='nextStep' onclick='window.manual.step("+o.nextStep+");'>Pr&oacute;ximo</a>";
+				str +="<a href='javascript:void(0)' class='nextStep' onclick='window.manual.step(\""+o.nextStep+"\");'>Próximo</a>";
 			}
 		}
 		str+="</div>";
 		return str;
-	}
-	self.hasOptions = function(){
-	    return (self.options && self.options.length>0);
 	}
 	self.isArrayOptions= function(){
 		return (self.options.length>0 && self.options[0] instanceof Array)
@@ -277,26 +289,22 @@ var Manual = function(){
 		}
 	}
 	self.getOptions = function(id){
-	    if(self.hasOptions()){
-    		if(self.isArrayOptions()){
-    			return self.options[id];
-    		}else{
-    			if((typeof id == "number")){
-    				return self.options[id].items;
-    			}else{
-    				var retorno = $(self.options).filter(function(){
-    					return this.id == id; 
-    				});
-    				if(retorno.length>0){
-    					return retorno[0].items;
-    				}else{
-    					return [];
-    				}
-    			}
-    		}
-	    }else{
-	        return [];
-	    }
+		if(self.isArrayOptions()){
+			return self.options[id];
+		}else{
+			if((typeof id == "number")){
+				return self.options[id].items;
+			}else{
+				var retorno = $(self.options).filter(function(){
+					return this.id == id; 
+				});
+				if(retorno.length>0){
+					return retorno[0].items;
+				}else{
+					return [];
+				}
+			}
+		}
 	}
 	self.createWaitText = function(id,o){
 		$("#"+self.idElement).append($("<div id='waitText_"+id+"' class='wait "+(o.hAlign || "center")+" "+(o.vAlign || "top")+"'>Aguarde...</div>"));
@@ -321,3 +329,5 @@ window.manual = new Manual();
 window.manual.baseUrl = window.baseUrl;
 window.manual.init();
 window.manual.options = window.options;
+
+
