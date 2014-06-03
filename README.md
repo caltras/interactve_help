@@ -56,7 +56,7 @@ Creates a region associated with an element on the screen
 2. **selector**: string (jQuery Selector)  **_(required)_**
 3. **clickable**: boolean
 4. **fn**: function or string function
-
+5. **fit**: boolean
 
 ##Example
 ```html
